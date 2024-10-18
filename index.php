@@ -17,7 +17,7 @@
                     <th>ID</th>
                     <th>Judul</th>
                     <th>Penulis</th>
-                    <th>Tahun Terbit</th>
+                    <th>TahunTerbit</th>
                     <th>Genre</th>
                 </tr>
             </thead>
@@ -34,6 +34,7 @@
                                 <td>" . $row['penulis'] . "</td>
                                 <td>" . $row['tahun_terbit'] . "</td>
                                 <td>" . $row['genre'] . "</td>
+                                
                               </tr>";
                     }
                 } else {
