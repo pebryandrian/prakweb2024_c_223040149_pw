@@ -9,31 +9,29 @@ class App {
     {
         $url = $this->parseURL();
         
-        if(file_exists('../app/controllers/' . $url [0] .'.php')){
+        // Cek apakah file controller yang diminta ada
+        if (isset($url[0]) && file_exists('../app/controllers/' . $url[0] . '.php')) {
             $this->controller = $url[0];
             unset($url[0]);
         }
 
-        require_once '../app/controllers/' .  $this->controller . '.php';
-        $this->controller  = new $this->controller;
+        // Include file controller yang sudah dipastikan ada
+        require_once '../app/controllers/' . $this->controller . '.php';
+        $this->controller = new $this->controller;
 
-
-        //method
-        if( isset($url[1])){
-            if( method_exists($this->controller, $url[1])){
+        // Cek apakah method ada dalam controller
+        if (isset($url[1])) {
+            if (method_exists($this->controller, $url[1])) {
                 $this->method = $url[1];
                 unset($url[1]);
             }
-    }
-
-        //params
-        if( !empty($url)){
-            $this->params = array_values($url);
         }
 
-        // jalankan controller & method, serta kirimkan params jika ada
+        // Mengelola parameter jika ada
+        $this->params = $url ? array_values($url) : [];
+
+        // Menjalankan controller, method, dan parameter yang sesuai
         call_user_func_array([$this->controller, $this->method], $this->params);
-        
     }
 
     public function parseURL() 
@@ -44,6 +42,6 @@ class App {
             $url = explode('/', $url);
             return $url;
         }
-        return null; 
+        return []; // Mengembalikan array kosong jika tidak ada parameter URL
     }
 }
