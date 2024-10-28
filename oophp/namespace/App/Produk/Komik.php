@@ -1,4 +1,4 @@
-<?php 
+<?php namespace App\Produk;
 
 class Komik extends Produk implements InfoProduk {
     public $jmlHalaman;

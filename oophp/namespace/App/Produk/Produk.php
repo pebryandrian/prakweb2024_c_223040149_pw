@@ -1,4 +1,4 @@
-<?php
+<?php namespace App\Produk;
 
 abstract class Produk { // Tambahkan kata kunci abstract
     protected $judul;

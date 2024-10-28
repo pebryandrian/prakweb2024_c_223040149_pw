@@ -1,4 +1,4 @@
-<?php 
+<?php namespace App\Produk;
 
 class Game extends Produk implements InfoProduk {
     public $waktuMain;
